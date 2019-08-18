@@ -1,4 +1,8 @@
 public class Duke {
+    /**
+     * Main class.
+     * @param args empty for now.
+     */
     public static void main(String[] args) {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
