@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
@@ -16,12 +17,24 @@ public class Duke {
         System.out.println(horilines);
         System.out.println("\t Hello! I'm Duke \n\t What can I do for you?");
         System.out.println(horilines);
+
+        ArrayList<String> list = new ArrayList<String>();
         Scanner Input = new Scanner(System.in);
         String command = Input.nextLine();
         while (!"bye".equals(command)){
-            System.out.println(horilines);
-            System.out.println("\t "+ command);
-            System.out.println(horilines);
+            if(!"list".equals(command)){
+                list.add(command);
+                System.out.println(horilines);
+                System.out.println("\t Added: "+ command);
+                System.out.println(horilines);
+            }else{
+                System.out.println(horilines);
+                for (int i = 0; i < list.size(); i++) {
+                    System.out.println(" " + (i + 1) + ". " + list.get(i));
+                }
+                System.out.println(horilines);
+            }
+
             command = Input.nextLine();
         }
             System.out.println(horilines);
