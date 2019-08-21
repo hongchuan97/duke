@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.StringTokenizer;
 
 public class Duke {
     /**
@@ -18,22 +19,32 @@ public class Duke {
         System.out.println("\t Hello! I'm Duke \n\t What can I do for you?");
         System.out.println(horilines);
 
-        ArrayList<String> list = new ArrayList<String>();
+        ArrayList<Task> list = new ArrayList<Task>();
         Scanner Input = new Scanner(System.in);
         String command = Input.nextLine();
         while (!"bye".equals(command)){
+            System.out.println(horilines);
             if(!"list".equals(command)){
-                list.add(command);
-                System.out.println(horilines);
-                System.out.println("\t Added: "+ command);
-                System.out.println(horilines);
-            }else{
-                System.out.println(horilines);
-                for (int i = 0; i < list.size(); i++) {
-                    System.out.println(" " + (i + 1) + ". " + list.get(i));
+
+                StringTokenizer split = new StringTokenizer(command);
+                if(!"done".equals(split.nextToken())){
+                    Task buffer = new Task(command);
+                    list.add(buffer);
+                    System.out.println("\t Added: "+ command);
+                }else{
+                    Task buff = list.get( Integer.parseInt( split.nextToken() ) - 1 );
+                    buff.Done();
+                    System.out.println("\t Nice! I've marked this task as done:");
+                    System.out.println("\t  [" + buff.getStatusIcon() + "] " + buff.description);
                 }
-                System.out.println(horilines);
+
+            }else{
+                for (int i = 0; i < list.size(); i++) {
+                    System.out.println("\t " + (i + 1) + ".[" + list.get(i).getStatusIcon() + "] " + list.get(i).description);
+                }
+
             }
+            System.out.println(horilines);
 
             command = Input.nextLine();
         }
@@ -42,4 +53,29 @@ public class Duke {
             System.out.println(horilines);
 
     }
+
+    public static class Task {
+        protected String description;
+        protected boolean isDone;
+
+        /**
+         * Task constructor
+         * @param description The description of the task
+         */
+        public Task(String description) {
+            this.description = description;
+            this.isDone = false;
+        }
+
+        public String getStatusIcon() {
+            return (isDone ? "\u2713" : "\u2718"); //return tick or X symbols
+        }
+
+        public void Done(){
+            this.isDone = true;
+        }
+
+        //...
+    }
+
 }
