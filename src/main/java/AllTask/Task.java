@@ -1,9 +1,11 @@
+package AllTask;
+
 public class Task {
     protected String description;
     protected boolean isDone;
 
     /**
-     * Task constructor
+     * AllTask.Task constructor
      * @param description The description of the task
      */
     public Task(String description) {
