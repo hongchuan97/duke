@@ -28,7 +28,7 @@ public class parser {
                     while (msg.hasMoreTokens()) {
                         description += " " + msg.nextToken();
                     }
-                    Task toDos = new ToDos(description);
+                    Task toDos = new ToDos(description , false);
                     TaskList.addTask(toDos);
                 } catch (NoSuchElementException e) {
                     throw new DukeException("\t \u2639 OOPS!!! The description of a todo cannot be empty.");
@@ -47,7 +47,7 @@ public class parser {
                     while (msg.hasMoreTokens()) {
                         by += " " + msg.nextToken();
                     }
-                    Task deadline = new Deadline(holder, by);
+                    Task deadline = new Deadline(holder, false , by);
                     TaskList.addTask(deadline);
                 } catch (NoSuchElementException e) {
                     throw new DukeException("\t \u2639 OOPS!!! Error in deadline input.");
@@ -65,13 +65,21 @@ public class parser {
                     }
                     String date = msg.nextToken();
                     String time = msg.nextToken();
-                    Task event = new Event(eventholder, date, time);
+                    Task event = new Event(eventholder, false , date, time);
                     TaskList.addTask(event);
                 } catch (NoSuchElementException e) {
                     throw new DukeException("\t \u2639 OOPS!!! Error in event input.");
                 }
                 break;
-
+            case "delete" :
+                try {
+                    TaskList.delTask(Integer.parseInt(msg.nextToken()) - 1);
+                } catch (NoSuchElementException e) {
+                    throw new DukeException("\t \u2639 OOPS!!! Please enter the index of which task to be deleted.");
+                } catch (DukeException e) {
+                    throw e;
+                }
+                break;
             default:
                 throw new DukeException("\t \u2639 OOPS!!! I'm sorry, but I don't know what that means :-(");
         }

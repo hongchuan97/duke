@@ -1,3 +1,4 @@
+import Data.TaskList;
 import Exceptions.DukeException;
 
 import java.util.Scanner;
@@ -20,6 +21,7 @@ public class Duke {
         System.out.println(lines);
         System.out.println("\t Hello! I'm Duke \n\t What can I do for you?");
         System.out.println(lines);
+        TaskList.loadTask();
 
         Scanner Input = new Scanner(System.in);
         String command = Input.nextLine();
@@ -38,6 +40,11 @@ public class Duke {
             System.out.println(lines);
             System.out.println("\t Bye. Hope to see you again soon!");
             System.out.println(lines);
+            try {
+                TaskList.saveFile();
+            } catch (DukeException e){
+                System.out.println(e.getMessage());
+            }
 
     }
 
