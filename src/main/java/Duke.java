@@ -70,7 +70,7 @@ public class Duke {
                 case "event" :
                     String eventholder = split.nextToken();
                     String check2 = split.nextToken();
-                    while (!"/by".equals(check2)){
+                    while (!"/at".equals(check2)){
                         eventholder += " " + check2;
                         check2 = split.nextToken();
                     }
