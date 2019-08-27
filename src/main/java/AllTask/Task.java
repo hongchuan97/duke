@@ -9,7 +9,7 @@ public class Task {
      * @param description The description of the task
      * @param done The state of task
      */
-    public Task(String description , boolean done) {
+    public Task(String description, boolean done) {
         this.description = description;
         this.isDone = done;
     }

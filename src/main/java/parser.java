@@ -2,6 +2,9 @@ import Exceptions.DukeException;
 import AllTask.*;
 import Data.TaskList;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.NoSuchElementException;
 import java.util.StringTokenizer;
 
@@ -43,10 +46,8 @@ public class parser {
                         holder += " " + check;
                         check = msg.nextToken();
                     }
-                    String by = msg.nextToken();
-                    while (msg.hasMoreTokens()) {
-                        by += " " + msg.nextToken();
-                    }
+                    String by = parseDate(msg.nextToken());
+
                     Task deadline = new Deadline(holder, false , by);
                     TaskList.addTask(deadline);
                 } catch (NoSuchElementException e) {
@@ -59,12 +60,12 @@ public class parser {
                 try {
                     String eventholder = msg.nextToken();
                     String check2 = msg.nextToken();
-                    while (!"/by".equals(check2)) {
+                    while (!"/at".equals(check2)) {
                         eventholder += " " + check2;
                         check2 = msg.nextToken();
                     }
-                    String date = msg.nextToken();
-                    String time = msg.nextToken();
+                    String date = parseDate(msg.nextToken());
+                    String time = parsetime(msg.nextToken());
                     Task event = new Event(eventholder, false , date, time);
                     TaskList.addTask(event);
                 } catch (NoSuchElementException e) {
@@ -84,4 +85,27 @@ public class parser {
                 throw new DukeException("\t \u2639 OOPS!!! I'm sorry, but I don't know what that means :-(");
         }
     }
+
+    private static String parsetime(String time) throws DukeException{
+        try {
+            SimpleDateFormat Format = new SimpleDateFormat("HHmm");
+            Date dateForm = Format.parse(time);
+            SimpleDateFormat newFormat = new SimpleDateFormat("Kaa");
+            return newFormat.format(dateForm);
+        } catch (ParseException e){
+            throw new DukeException(e.getMessage());
+        }
+    }
+
+    public static String parseDate(String date) throws DukeException{
+        try {
+            SimpleDateFormat Format = new SimpleDateFormat("dd/MM/yyyy");
+            Date dateForm = Format.parse(date);
+            SimpleDateFormat newFormat = new SimpleDateFormat("MMM dd");
+            return newFormat.format(dateForm);
+        } catch (ParseException e){
+            throw new DukeException(e.getMessage());
+        }
+    }
+
 }

@@ -4,8 +4,8 @@ public class Deadline extends Task {
 
     protected String by;
 
-    public Deadline(String description, boolean done , String by) {
-        super(description , done);
+    public Deadline(String description, boolean done ,  String by) {
+        super(description, done);
         this.by = by;
     }
 

@@ -1,5 +1,7 @@
 package AllTask;
 
+import java.util.Date;
+
 public class Event extends Task {
     protected String date;
     protected String time;
@@ -11,7 +13,7 @@ public class Event extends Task {
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (by: " + date + " " + time + ")";
+        return "[E]" + super.toString() + " (at: " + date + " " + time + ")";
     }
     public String saveFormat() {return "E | " + super.isDone + " | " + super.description + " | " + this.date + " | " + this.time;}
 }
