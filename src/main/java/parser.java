@@ -59,7 +59,7 @@ public class parser {
                 try {
                     String eventholder = msg.nextToken();
                     String check2 = msg.nextToken();
-                    while (!"/by".equals(check2)) {
+                    while (!"/at".equals(check2)) {
                         eventholder += " " + check2;
                         check2 = msg.nextToken();
                     }
