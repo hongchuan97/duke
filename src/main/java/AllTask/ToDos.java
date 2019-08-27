@@ -2,7 +2,7 @@ package AllTask;
 
 public class ToDos extends Task {
     public ToDos(String description , boolean done){
-        super(description , done);
+        super(description, done);
     }
     @Override
     public String toString() {
