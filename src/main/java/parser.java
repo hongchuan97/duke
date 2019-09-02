@@ -72,7 +72,15 @@ public class parser {
                     throw new DukeException("\t \u2639 OOPS!!! Error in event input.");
                 }
                 break;
-
+            case "delete" :
+                try {
+                    TaskList.delTask(Integer.parseInt(msg.nextToken()) - 1);
+                } catch (NoSuchElementException e) {
+                    throw new DukeException("\t \u2639 OOPS!!! Please enter the index of which task to be deleted.");
+                } catch (DukeException e) {
+                    throw e;
+                }
+                break;
             default:
                 throw new DukeException("\t \u2639 OOPS!!! I'm sorry, but I don't know what that means :-(");
         }
