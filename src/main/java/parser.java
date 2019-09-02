@@ -65,7 +65,7 @@ public class parser {
                         check2 = msg.nextToken();
                     }
                     String date = parseDate(msg.nextToken());
-                    String time = parsetime(msg.nextToken());
+                    String time = parseTime(msg.nextToken());
                     Task event = new Event(eventholder, false , date, time);
                     TaskList.addTask(event);
                 } catch (NoSuchElementException e) {
