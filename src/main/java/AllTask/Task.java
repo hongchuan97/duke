@@ -22,6 +22,9 @@ public class Task {
         this.isDone = true;
     }
 
+    public boolean contain(String word){
+        return description.contains(word);
+    }
     public String toString(){
         return "[" + getStatusIcon() + "] " + description;
     }

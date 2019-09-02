@@ -90,5 +90,15 @@ public class TaskList {
         System.out.println("\t Now you have " + list.size() + " tasks in the list.");
     }
 
+    public static void find(String word){
+        int index = 1;
+        System.out.println("\t Here are the matching tasks in your list:");
+        for(Task t : list){
+            if(t.contain(word)){
+                System.out.println("\t " + index++ +"." + t.toString());
+            }
+        }
+    }
+
 
 }
