@@ -1,4 +1,4 @@
 T | true | read book
 D | true | return book | June 6th
 E | false | mon | Jan 01 | 2PM
-D | false | his | Dec 25
+E | true | mon | Dec 12 | 6PM

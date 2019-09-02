@@ -1,0 +1,4 @@
+test
+list
+event mon /at 12/12/2019 2359
+bye

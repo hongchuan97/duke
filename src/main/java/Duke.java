@@ -36,15 +36,16 @@ public class Duke {
             System.out.println(lines);
 
             command = Input.nextLine();
-        }
-            System.out.println(lines);
-            System.out.println("\t Bye. Hope to see you again soon!");
-            System.out.println(lines);
             try {
                 TaskList.saveFile();
             } catch (DukeException e){
                 System.out.println(e.getMessage());
             }
+        }
+            System.out.println(lines);
+            System.out.println("\t Bye. Hope to see you again soon!");
+            System.out.println(lines);
+
 
     }
 

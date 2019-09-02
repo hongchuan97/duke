@@ -90,15 +90,5 @@ public class TaskList {
         System.out.println("\t Now you have " + list.size() + " tasks in the list.");
     }
 
-    public static void delTask(int index) throws DukeException{
-        try {
-            Task buff = list.get(index);
-            System.out.println("\t Noted. I've removed this task: ");
-            System.out.println("\t  " + buff.toString());
-            list.remove(index);
-            System.out.println("\t Now you have " + list.size() + " tasks in the list.");
-        } catch (IndexOutOfBoundsException e) {
-            throw new DukeException("\t \u2639 OOPS!!! The index you entered is not valid.");
-        }
-    }
+
 }

@@ -72,25 +72,17 @@ public class parser {
                     throw new DukeException("\t \u2639 OOPS!!! Error in event input.");
                 }
                 break;
-            case "delete" :
-                try {
-                    TaskList.delTask(Integer.parseInt(msg.nextToken()) - 1);
-                } catch (NoSuchElementException e) {
-                    throw new DukeException("\t \u2639 OOPS!!! Please enter the index of which task to be deleted.");
-                } catch (DukeException e) {
-                    throw e;
-                }
-                break;
+
             default:
                 throw new DukeException("\t \u2639 OOPS!!! I'm sorry, but I don't know what that means :-(");
         }
     }
 
-    private static String parsetime(String time) throws DukeException{
+    private static String parseTime(String time) throws DukeException{
         try {
             SimpleDateFormat Format = new SimpleDateFormat("HHmm");
             Date dateForm = Format.parse(time);
-            SimpleDateFormat newFormat = new SimpleDateFormat("Kaa");
+            SimpleDateFormat newFormat = new SimpleDateFormat("K:mmaa");
             return newFormat.format(dateForm);
         } catch (ParseException e){
             throw new DukeException(e.getMessage());
