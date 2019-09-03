@@ -1,52 +1,49 @@
+import Command.Command;
 import Data.TaskList;
 import Exceptions.DukeException;
+import Parser.Parser;
+import Storage.Storage;
+import Ui.Ui;
 
-import java.util.Scanner;
 import java.util.StringTokenizer;
 
 public class Duke {
+    private Storage storage;
+    private TaskList tasks;
+    private Ui ui;
     /**
      * Main class.
      * @param args empty for now.
      */
     public static void main(String[] args) {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
-        String lines = "\t____________________________________________________________";
-
-        System.out.println(lines);
-        System.out.println("\t Hello! I'm Duke \n\t What can I do for you?");
-        System.out.println(lines);
-        TaskList.loadTask();
-
-        Scanner Input = new Scanner(System.in);
-        String command = Input.nextLine();
-        while (!"bye".equals(command)){
-            System.out.println(lines);
-            StringTokenizer split = new StringTokenizer(command);
-            try{
-                parser.commands(split);
-            } catch (DukeException err){
-                System.out.println(err.getMessage());
-            }
-            System.out.println(lines);
-
-            command = Input.nextLine();
+        new Duke(".\\src\\main\\java\\Data\\duke.txt").run();
+    }
+    public Duke(String filePath) {
+        ui = new Ui();
+        storage = new Storage(filePath);
+        try {
+            tasks = new TaskList(storage.load());
+        } catch (DukeException e) {
+            ui.showLoadingError();
+            tasks = new TaskList();
+        }
+    }
+    public void run() {
+        ui.showWelcome();
+        boolean isExit = false;
+        while (!isExit) {
             try {
-                TaskList.saveFile();
-            } catch (DukeException e){
-                System.out.println(e.getMessage());
+                StringTokenizer fullCommand = ui.readCommand();
+                ui.showLine();
+                Command c = Parser.parse(fullCommand);
+                c.execute(tasks, ui, storage);
+                isExit = c.isExit();
+            } catch (DukeException e) {
+                ui.showError(e.getMessage());
+            } finally {
+                ui.showLine();
             }
         }
-            System.out.println(lines);
-            System.out.println("\t Bye. Hope to see you again soon!");
-            System.out.println(lines);
-
-
     }
 
 

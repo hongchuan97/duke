@@ -1,29 +1,31 @@
+package Parser;
+
+import Command.Command;
 import Exceptions.DukeException;
 import AllTask.*;
-import Data.TaskList;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.NoSuchElementException;
 import java.util.StringTokenizer;
+import Command.*;
 
-public class parser {
-    public static void commands(StringTokenizer msg) throws DukeException {
+public class Parser {
+    public static Command parse(StringTokenizer msg) throws DukeException {
         switch (msg.nextToken()) {
+            case "bye":
+                return new ExitCommand();
+
             case "list":
-                TaskList.showList();
-                break;
+                return new ShowCommand();
 
             case "done":
-                try {
-                    TaskList.doneTask(Integer.parseInt(msg.nextToken()) - 1);
-                } catch (NoSuchElementException e) {
-                    throw new DukeException("\t \u2639 OOPS!!! Please enter the index of which task to be done.");
-                } catch (DukeException e) {
-                    throw e;
+                try{
+                    return new DoneCommand(Integer.parseInt(msg.nextToken()));
+                }catch (NoSuchElementException e){
+                    throw new DukeException(" \u2639 OOPS!!! Please enter the index of which task to be done.");
                 }
-                break;
 
             case "todo":
                 try {
@@ -32,11 +34,10 @@ public class parser {
                         description += " " + msg.nextToken();
                     }
                     Task toDos = new ToDos(description , false);
-                    TaskList.addTask(toDos);
+                    return new AddCommand(toDos);
                 } catch (NoSuchElementException e) {
-                    throw new DukeException("\t \u2639 OOPS!!! The description of a todo cannot be empty.");
+                    throw new DukeException(" \u2639 OOPS!!! The description of a todo cannot be empty.");
                 }
-                break;
 
             case "deadline":
                 try {
@@ -49,12 +50,10 @@ public class parser {
                     String by = parseDate(msg.nextToken());
 
                     Task deadline = new Deadline(holder, false , by);
-                    TaskList.addTask(deadline);
+                    return new AddCommand(deadline);
                 } catch (NoSuchElementException e) {
-                    throw new DukeException("\t \u2639 OOPS!!! Error in deadline input.");
+                    throw new DukeException(" \u2639 OOPS!!! Error in deadline input.");
                 }
-
-                break;
 
             case "event":
                 try {
@@ -67,33 +66,28 @@ public class parser {
                     String date = parseDate(msg.nextToken());
                     String time = parseTime(msg.nextToken());
                     Task event = new Event(eventholder, false , date, time);
-                    TaskList.addTask(event);
+                    return new AddCommand(event);
                 } catch (NoSuchElementException e) {
-                    throw new DukeException("\t \u2639 OOPS!!! Error in event input.");
+                    throw new DukeException(" \u2639 OOPS!!! Error in event input.");
                 }
-                break;
             case "delete" :
                 try {
-                    TaskList.delTask(Integer.parseInt(msg.nextToken()) - 1);
+                    return new DelCommand( Integer.parseInt( msg.nextToken() ) );
                 } catch (NoSuchElementException e) {
-                    throw new DukeException("\t \u2639 OOPS!!! Please enter the index of which task to be deleted.");
-                } catch (DukeException e) {
-                    throw e;
+                    throw new DukeException(" \u2639 OOPS!!! Please enter the index of which task to be deleted.");
                 }
-                break;
             case "find":
                 try{
                     String keyword = msg.nextToken();
                     while (msg.hasMoreTokens()){
                         keyword += " " + msg.nextToken();
                     }
-                    TaskList.find(keyword);
+                    return new FindCommand(keyword);
                 }catch (NoSuchElementException e){
-                    throw new DukeException("\t \u2639 OOPS!!!");
+                    throw new DukeException(" \u2639 OOPS!!!");
                 }
-                break;
             default:
-                throw new DukeException("\t \u2639 OOPS!!! I'm sorry, but I don't know what that means :-(");
+                throw new DukeException(" \u2639 OOPS!!! I'm sorry, but I don't know what that means :-(");
         }
     }
 
