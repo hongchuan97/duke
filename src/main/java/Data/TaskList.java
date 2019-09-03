@@ -101,4 +101,15 @@ public class TaskList {
             throw new DukeException("\t \u2639 OOPS!!! The index you entered is not valid.");
         }
     }
+    public static void find(String word){
+        int index = 1;
+        System.out.println("\t Here are the matching tasks in your list:");
+        for(Task t : list){
+            if(t.contain(word)){
+                System.out.println("\t " + index++ +"." + t.toString());
+            }
+        }
+    }
+
+
 }

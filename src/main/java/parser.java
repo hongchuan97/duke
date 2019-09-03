@@ -81,6 +81,17 @@ public class parser {
                     throw e;
                 }
                 break;
+            case "find":
+                try{
+                    String keyword = msg.nextToken();
+                    while (msg.hasMoreTokens()){
+                        keyword += " " + msg.nextToken();
+                    }
+                    TaskList.find(keyword);
+                }catch (NoSuchElementException e){
+                    throw new DukeException("\t \u2639 OOPS!!!");
+                }
+                break;
             default:
                 throw new DukeException("\t \u2639 OOPS!!! I'm sorry, but I don't know what that means :-(");
         }
