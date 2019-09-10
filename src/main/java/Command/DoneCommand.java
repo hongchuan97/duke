@@ -6,13 +6,13 @@ import Exceptions.DukeException;
 import Storage.Storage;
 import Ui.Ui;
 
-import java.util.NoSuchElementException;
-
 public class DoneCommand extends Command {
     private int index;
-    public DoneCommand(int index){
+
+    public DoneCommand(int index) {
         this.index = index - 1;
     }
+
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         try {

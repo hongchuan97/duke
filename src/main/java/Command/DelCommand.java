@@ -8,9 +8,11 @@ import Ui.Ui;
 
 public class DelCommand extends Command {
     private int index;
-    public DelCommand(int index){
+
+    public DelCommand(int index) {
         this.index = index - 1;
     }
+
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         Task del = tasks.delTask(this.index);

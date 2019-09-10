@@ -7,7 +7,7 @@ REM delete output from previous run
 del ACTUAL.TXT
 
 REM compile the code into the bin folder
-javac -cp ..\src -Xlint:none -d ..\bin ..\src\main\java\*.java ..\src\main\java\AllTask\*.java ..\src\main\java\Data\*.java ..\src\main\java\Exceptions\*.java
+javac -encoding "UTF-8" -cp ..\src -Xlint:none -d ..\bin ..\src\main\java\*.java ..\src\main\java\AllTask\*.java ..\src\main\java\Data\*.java ..\src\main\java\Exceptions\*.java ..\src\main\java\Parser\*.java ..\src\main\java\Storage\*.java ..\src\main\java\Ui\*.java ..\src\main\java\Command\*.java
 IF ERRORLEVEL 1 (
     echo ********** BUILD FAILURE **********
     exit /b 1

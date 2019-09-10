@@ -14,38 +14,53 @@ import java.util.Scanner;
 
 public class Storage {
     private String filePath;
-    public Storage(String filePath){
+
+    public Storage(String filePath) {
         this.filePath = filePath;
     }
-    public ArrayList<Task> load() throws DukeException{
+
+    /**
+     * Load file from storage into a Task List.
+     *
+     * @return A List of task
+     * @throws DukeException Error if file cannot be loaded.
+     */
+    public ArrayList<Task> load() throws DukeException {
         ArrayList<Task> list = new ArrayList<>();
-        try{
+        try {
             File fw = new File(filePath);
             Scanner fileReader = new Scanner(fw);
 
-            while (fileReader.hasNext()){
+            while (fileReader.hasNext()) {
                 String[] component = fileReader.nextLine().split(" \\| ");
-                switch (component[0]){
-                    case "T" :
-                        Task todo = new ToDos(component[2] , "true".equals(component[1]));
+                switch (component[0]) {
+                    case "T":
+                        Task todo = new ToDos(component[2], "true".equals(component[1]));
                         list.add(todo);
                         break;
-                    case "D" :
-                        Task deadline = new Deadline(component[2] , "true".equals(component[1]) , component[3]);
+                    case "D":
+                        Task deadline = new Deadline(component[2], "true".equals(component[1]), component[3]);
                         list.add(deadline);
                         break;
-                    case "E" :
-                        Task event = new Event(component[2] , "true".equals(component[1]) , component[3] ,component[4]);
+                    case "E":
+                        Task event = new Event(component[2], "true".equals(component[1]), component[3], component[4]);
                         list.add(event);
                         break;
                 }
             }
             return list;
-        }catch(Exception e){
+        } catch (Exception e) {
             throw new DukeException(e.getMessage());
         }
 
     }
+
+    /**
+     * Save TaskList into file.
+     *
+     * @param list List of Task.
+     * @throws DukeException Error if file cannot be save.
+     */
     public void saveFile(ArrayList<Task> list) throws DukeException {
         File f = new File(filePath);
         try {

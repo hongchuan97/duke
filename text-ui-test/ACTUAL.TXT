@@ -9,21 +9,14 @@ Hello from
 	 Hello! I'm Duke 
 	 What can I do for you?
 	____________________________________________________________
-java.io.FileNotFoundException: .\src\main\java\Data\duke.txt (The system cannot find the path specified)
-	____________________________________________________________
-	 ? OOPS!!! I'm sorry, but I don't know what that means :-(
-	____________________________________________________________
-File not found: .\src\main\java\Data\duke.txt (The system cannot find the path specified)
 	____________________________________________________________
 	 Here are the tasks in your list:
+	 1.[T][?] read book
+	 2.[D][?] return book (by: June 6th)
+	 3.[E][?] mon (at: Jan 01 2PM)
+	 4.[E][?] mon (at: Dec 12 6PM)
+	 5.[E][?] books (at: Jan 01 3:30PM)
 	____________________________________________________________
-File not found: .\src\main\java\Data\duke.txt (The system cannot find the path specified)
-	____________________________________________________________
-	 Got it. I've added this task:
-	 [E][?] mon (at: Dec 12 11:59PM)
-	 Now you have 1 tasks in the list.
-	____________________________________________________________
-File not found: .\src\main\java\Data\duke.txt (The system cannot find the path specified)
 	____________________________________________________________
 	 Bye. Hope to see you again soon!
 	____________________________________________________________

@@ -7,17 +7,21 @@ import Ui.Ui;
 
 import java.util.StringTokenizer;
 
+
 public class Duke {
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
-    /**
-     * Main class.
-     * @param args empty for now.
-     */
+
     public static void main(String[] args) {
         new Duke(".\\src\\main\\java\\Data\\duke.txt").run();
     }
+
+    /**
+     * Load all requirement before running duke.
+     *
+     * @param filePath String of path to file that contains task list.
+     */
     public Duke(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
@@ -28,6 +32,10 @@ public class Duke {
             tasks = new TaskList();
         }
     }
+
+    /**
+     * Run Duke.
+     */
     public void run() {
         ui.showWelcome();
         boolean isExit = false;
@@ -45,7 +53,6 @@ public class Duke {
             }
         }
     }
-
 
 
 }

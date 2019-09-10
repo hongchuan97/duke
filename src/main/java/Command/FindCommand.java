@@ -10,12 +10,14 @@ import java.util.ArrayList;
 
 public class FindCommand extends Command {
     private String keyword;
-    public FindCommand(String keyword){
+
+    public FindCommand(String keyword) {
         this.keyword = keyword;
     }
+
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
-        ArrayList<Task> newlist = tasks.find(this.keyword , tasks.list());
+        ArrayList<Task> newlist = tasks.find(this.keyword);
         ui.showMatch(newlist);
 
     }

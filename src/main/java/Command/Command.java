@@ -6,7 +6,7 @@ import Storage.Storage;
 import Ui.Ui;
 
 public abstract class Command {
-    public boolean isExit(){
+    public boolean isExit() {
         return false;
     }
 
